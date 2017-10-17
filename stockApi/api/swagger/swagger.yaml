@@ -1,0 +1,95 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Stock items App
+host: localhost:10010
+basePath: /
+# 
+schemes:
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /items:
+    post:
+      x-swagger-router-controller: items.add
+      tags:
+        - items
+      description: add item stock
+      operationId: postItem
+      parameters:
+        - name: Item
+          in: body
+          description: item properties
+          required: true
+          schema:
+            $ref: "#/definitions/Item"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Response"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+    get:
+      tags:
+        - items
+      x-swagger-router-controller: items.list
+      description: return list of items
+      operationId: getItems
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Item"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /items/{id}:
+    delete:
+      tags:
+        - items
+      x-swagger-router-controller: items.remove
+      description: remove item by id 
+      operationId: delItem
+      parameters:
+        - name: id
+          in: path
+          description: id of item
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Item"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+definitions:
+  Item:
+    type: object
+    properties:
+      name:
+        type: string
+      quantity:
+        type: number
+      price:
+        type: number
+  Response:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+        
