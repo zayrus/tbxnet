@@ -16,6 +16,7 @@ Open a separate terminal to start the client:
 
 ```bash
 cd stockFront
+npm i
 npm start
 ```
 
