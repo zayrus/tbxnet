@@ -10,7 +10,7 @@
   "dependencies": {
     "cors": "^2.8.1",
     "express": "^4.16.2",
-    "lodash": "^4.17.2",
+    "lodash": "^4.17.19",
     "mongodb": "^2.2.16",
     "mongoose": "^4.7.2",
     "path": "^0.12.7",
